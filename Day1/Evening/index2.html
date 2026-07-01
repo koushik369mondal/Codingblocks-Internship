@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Table and Form</title>
+</head>
+<body>
+    <h2>Product Inventory</h2>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>101</td>
+                <td>Wireless Mouse</td>
+                <td>$25.00</td>
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>Mechanical Keyboard</td>
+                <td>$75.00</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr><br>
+    <h2>Add New Product</h2>
+    <form action="#" method="POST">
+        <p>
+            <label for="prodName">Product Name:</label><br>
+            <input type="text" id="prodName" name="productName" required>
+        </p>
+        <p>
+            <label for="prodPrice">Price:</label><br>
+            <input type="number" id="prodPrice" name="productPrice" min="1" step="0.01" required>
+        </p>
+        <p>
+            <button type="submit">Submit Product</button>
+        </p>
+    </form>
+</body>
+</html>
