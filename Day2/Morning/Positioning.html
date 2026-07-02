@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position Demo</title>
+
+    <style>
+        body {
+            height: 2000px; /* For scrolling */
+        }
+
+        .box {
+            width: 200px;
+            padding: 15px;
+            margin: 15px;
+            color: white;
+        }
+
+        /* 1. Static */
+        .static-box {
+            background: gray;
+            position: static;
+        }
+
+        /* 2. Relative */
+        .relative-box {
+            background: blue;
+            position: relative;
+            top: 15px;
+            left: 30px;
+        }
+
+        /* 3. Absolute */
+        .absolute-box {
+            background: red;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* 4. Fixed */
+        .fixed-box {
+            background: purple;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* 5. Sticky */
+        .sticky-box {
+            background: green;
+            position: sticky;
+            top: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>CSS Position Demo</h2>
+    <div class="box sticky-box">Sticky</div>
+    <div class="box static-box">Static</div>
+    <div class="box relative-box">Relative</div>
+    <div class="box absolute-box">Absolute</div>
+    <div class="box fixed-box">Fixed</div>
+</body>
+
+</html>

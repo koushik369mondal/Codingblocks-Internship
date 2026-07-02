@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model Analogy</title>
+
+    <style>
+        .margin-zone {
+            border: 2px dashed red;
+            padding: 40px;
+            display: inline-block;
+        }
+
+        .border-zone {
+            border: 2px dashed green;
+            padding: 30px;
+        }
+
+        .house-content {
+            border: 2px solid black;
+            padding: 15px 40px;
+            text-align: center;
+        }
+
+        .label {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="margin-zone">
+        <div class="label">Margin Zone</div>
+        <div class="border-zone">
+            <div class="label">Padding Zone</div>
+            <div class="house-content">
+                House
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
