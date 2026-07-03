@@ -286,3 +286,16 @@ button {
     font-weight: 600;
     margin-left: 5px;
 }
+
+#write{
+    text-decoration: none;
+    color: #6b6b6b;
+}
+
+#logo{
+    font-family: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #000000;
+}
