@@ -17,6 +17,11 @@ body {
     align-items: center;
 
     border-bottom: 1px solid #ddd;
+    background: #fff;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .left,
@@ -81,12 +86,16 @@ button {
 
 .sidebar {
     padding: 25px;
-
     border-right: 1px solid #ddd;
 
     display: flex;
     flex-direction: column;
     gap: 25px;
+
+    position: sticky;
+    top: 70px;
+
+    height: calc(100vh - 70px);
 }
 
 .sidebar nav {
