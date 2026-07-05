@@ -12,7 +12,8 @@ body {
 .hero {
     width: 100%;
     min-height: 100vh;
-    background-image: url("https://themewagon.github.io/mexant/assets/images/slide-01.jpg");
+    /* background-image: url("https://themewagon.github.io/mexant/assets/images/slide-01.jpg"); */
+    background-image: url("background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,30 +36,6 @@ nav {
     align-items: center;
     position: relative;
     z-index: 5;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-icon {
-    width: 46px;
-    height: 46px;
-    background: #ff5b25;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 22px;
-}
-
-.logo h2 {
-    color: #fff;
-    font-size: clamp(22px, 2vw, 32px);
-    font-weight: 700;
 }
 
 nav ul {
@@ -99,14 +76,14 @@ nav button:hover {
 .hero-content {
     width: 860px;
     margin-left: 70px;
-    margin-top: 40px;
+    margin-top: 10px;
     color: white;
     position: relative;
     z-index: 2;
 }
 
 .hero-content h1 {
-    font-size: clamp(48px, 6vw, 72px);
+    font-size: 61px;
     line-height: 1.1;
     font-weight: 800;
 }
@@ -125,9 +102,9 @@ nav button:hover {
 
 .hero-content p {
     font-size: 17px;
-    line-height: 1.8;
+    line-height: 1.5;
     color: #ddd;
-    width: 90%;
+    width: 70%;
 }
 
 /* Buttons */
