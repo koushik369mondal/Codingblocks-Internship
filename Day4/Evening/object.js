@@ -20,3 +20,4 @@ let employee = {
 console.log(employee);
 console.log("Name: " + employee.name);
 console.log("City: " + employee.address.city);
+console.log("State: " + employee.address["state"]);
