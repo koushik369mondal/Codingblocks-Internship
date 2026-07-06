@@ -11,17 +11,27 @@ while (i <= 30) {
     i++;
 }
 
-// print all no from 1 to 100
+// all numbers from 1 to 100
 for (var i = 1; i <= 100; i++) {
     console.log(i);
 }
 
-// print all even no from 1 to 100
+// even numbers
 for (var i = 2; i <= 100; i += 2) {
     console.log(i);
 }
 
-// print all odd no from 1 to 100
+// odd numbers
 for (var i = 1; i <= 100; i += 2) {
     console.log(i);
 }
+
+// even numbers
+function printEvenNumbers() {
+    for (var i = 1; i <= 100; i++) {
+        if (i % 2 === 0) {
+            console.log(i);
+        }
+    }
+}
+printEvenNumbers();
