@@ -60,9 +60,9 @@ nav button {
     background: #4ac57a;
     color: #fff;
     border: none;
-    padding: 18px 34px;
+    padding: 15px 30px;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
     font-weight: 600;
     transition: 0.3s;
@@ -85,7 +85,7 @@ nav button:hover {
 .hero-content h1 {
     font-size: 61px;
     line-height: 1.1;
-    font-weight: 800;
+    font-weight: 500;
 }
 
 .hero-content span {
