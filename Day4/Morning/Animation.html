@@ -32,6 +32,31 @@
                 left: 0px;
             }
         }
+
+        @keyframes move2 {
+            0%{
+                left: 0px;
+                top: 0px;
+            }
+            50%{
+                left: 200px;
+                top: 100px;
+            }
+            100%{
+                left: 0px;
+                top: 0px;
+            }
+        }
+
+        @keyframes rotate {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
         .div1{
             height: 200px;
             width: 200px;
@@ -40,17 +65,20 @@
             animation-duration: 4s;
             animation-delay: 2s;
             animation-iteration-count: infinite; */
-            animation: mymove 4s 2s infinite ease-in-out;
+            /* animation: mymove 4s 2s infinite ease-in-out; */
             position: relative;
             /* animation-timing-function: ease-in; */
             /* animation-timing-function: ease-out; */
             /* animation-timing-function: ease-in-out; */
             /* animation-timing-function: linear; */
-            
+            animation: move2 4s 2s linear forwards , rotate 2s 7s infinite linear;
         }
     </style>
 </head>
 <body>
     <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
 </body>
 </html>
