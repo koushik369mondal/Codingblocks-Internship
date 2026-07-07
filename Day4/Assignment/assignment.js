@@ -72,7 +72,7 @@ console.log(reverseNumber(123));
 
 // chech whether a no is pallindrome or not  121 -> true 
 function isPalindrome(num){
-    let reversed = reverseNumber(num);
+    let reversed = reverseNumber(num); 
     return num === reversed;
 }
 console.log(isPalindrome(121));
@@ -165,21 +165,35 @@ function findMaxMin(arr){
 console.log(findMaxMin([1, 2, 3, 4, 5]));
 
 // Left shift of an array 
-function leftShift(arr, n){
+function leftShift() {
+    let arr = [10, 20, 30, 40];
+    arr.shift();
+    console.log(arr); // [20, 30, 40]
+}
+leftShift();
+
+function leftShift2(arr, n){
     for(let i=0; i<n; i++){
         let first = arr.shift();
         arr.push(first);
     }
     return arr;
 }
-console.log(leftShift([1, 2, 3, 4, 5], 2));
+console.log(leftShift2([1, 2, 3, 4, 5], 2));
 
 // right shift of an array
-function rightShift(arr, n){
+function rightShift() {
+    let arr = [10, 20, 30, 40];
+    arr.pop();
+    console.log(arr); // [10, 20, 30]
+}
+rightShift();
+
+function rightShift2(arr, n){
     for(let i=0; i<n; i++){
         let last = arr.pop();
         arr.unshift(last);
     }
     return arr;
 }
-console.log(rightShift([1, 2, 3, 4, 5], 1));
+console.log(rightShift2([1, 2, 3, 4, 5], 1));
