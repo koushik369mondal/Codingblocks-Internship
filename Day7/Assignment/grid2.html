@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid 2</title>
+</head>
+<body>
+    
+    <div id="grid"></div>
+
+    <script>
+            const grid = document.getElementById('grid');
+
+            grid.style.border = '10px solid #2f315b';
+            grid.style.height = '400px';
+            grid.style.width = '800px';
+            grid.style.display = 'grid';
+            grid.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+            grid.style.gridTemplateRows = '1fr 1fr 1fr';
+            grid.style.gap = "10px";
+            grid.style.background = "#2f315b";
+            grid.style.margin = '40px auto';
+
+            function createBox(color, rowStart, rowEnd, colStart, colEnd) {
+                const box = document.createElement('div');
+
+                box.style.backgroundColor = color;
+
+                box.style.gridRow = `${rowStart} / ${rowEnd}`;
+                box.style.gridColumn = `${colStart} / ${colEnd}`;
+
+                grid.appendChild(box);
+            }
+            createBox('#58BB43', 1, 4, 1, 2);
+            createBox('#58BB43', 1, 2, 2, 4);
+            createBox("#F90000", 1, 2, 4, 5);
+            createBox("#FE9321", 2, 3, 2, 3);
+            createBox("#F90000", 2, 3, 3, 4);
+            createBox("#58BB43", 2, 4, 4, 5);
+            createBox("#F90000", 3, 4, 2, 3);
+            createBox("#FE9321", 3, 4, 3, 4);
+    </script>
+
+</body>
+</html>
