@@ -7,3 +7,8 @@ DOM selection
 documet.querySelector - > select the first one
 
 documet.querySelector - > select everything
+
+HW.
+1. Grid 1
+2. Grid 2
+3. Calculator
