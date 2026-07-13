@@ -1,0 +1,5 @@
+DOM selection
+1. Get element by id
+2.  a. InnerHTML
+    b. InnerText
+    c. TextContent
