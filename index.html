@@ -1,18 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LeetCode Java Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --paper: #faf9f6;
+            --paper-raised: #ffffff;
+            --ink: #1a1a2e;
+            --ink-soft: #565a6e;
+            --line: #e4e1d8;
+            --accent: #0d7377;
+            --accent-soft: #e4f2f1;
+            --easy: #2d8659;
+            --easy-bg: #e6f4ec;
+            --medium: #c17817;
+            --medium-bg: #fbf0e0;
+            --hard: #c73e3e;
+            --hard-bg: #fbe9e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ---------- Header ---------- */
+
+        header {
+            border-bottom: 1px solid var(--line);
+            padding: 48px 24px 32px;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -.01em;
+            margin-bottom: 10px;
+        }
+
+        header p.sub {
+            color: var(--ink-soft);
+            font-size: 15px;
+            margin-bottom: 28px;
+            max-width: 56ch;
+        }
+
+        /* stats bar */
+        .stats {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .stat-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+
+        .stat-count strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .bar {
+            flex: 1 1 220px;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            background: var(--line);
+            min-width: 160px;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+        }
+
+        .bar .b-easy {
+            background: var(--easy);
+        }
+
+        .bar .b-medium {
+            background: var(--medium);
+        }
+
+        .bar .b-hard {
+            background: var(--hard);
+        }
+
+        .legend {
+            display: flex;
+            gap: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-soft);
+        }
+
+        .legend i {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            margin-right: 5px;
+        }
+
+        .legend .le {
+            background: var(--easy);
+        }
+
+        .legend .lm {
+            background: var(--medium);
+        }
+
+        .legend .lh {
+            background: var(--hard);
+        }
+
+        /* search prompt */
+        .prompt {
+            display: flex;
+            align-items: center;
+            background: var(--paper-raised);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 0 4px 0 16px;
+            gap: 10px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .prompt:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        .prompt-sign {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .prompt input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            padding: 13px 0;
+            color: var(--ink);
+        }
+
+        .prompt input::placeholder {
+            color: #a7a49a;
+        }
+
+        .filters {
+            display: flex;
+            gap: 6px;
+            padding: 8px;
+        }
+
+        .filter-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid var(--line);
+            background: var(--paper);
+            color: var(--ink-soft);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: .15s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--ink);
+        }
+
+        .filter-btn.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: var(--paper);
+        }
+
+        /* ---------- Main ---------- */
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 36px 24px 80px;
+        }
+
+        .group-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin: 36px 0 16px;
+        }
+
+        .group-heading:first-child {
+            margin-top: 0;
+        }
+
+        .group-heading h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+
+        .group-heading .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .dot-easy {
+            background: var(--easy);
+        }
+
+        .dot-medium {
+            background: var(--medium);
+        }
+
+        .dot-hard {
+            background: var(--hard);
+        }
+
+        .group-heading .count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-soft);
+        }
+
+        .group-heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .problem-list {
+            list-style: none;
+        }
+
+        .problem {
+            display: grid;
+            grid-template-columns: 64px 1fr auto;
+            align-items: center;
+            gap: 18px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: .15s;
+        }
+
+        .problem:hover {
+            background: var(--paper-raised);
+            border-color: var(--line);
+        }
+
+        .p-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+
+        .p-main h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .p-topic {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            color: var(--ink-soft);
+        }
+
+        .p-topic::before {
+            content: "// ";
+            color: #b9b6ab;
+        }
+
+        .p-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 7px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            transition: .15s;
+        }
+
+        .p-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--ink-soft);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px 20px 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-soft);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width:640px) {
+            header {
+                padding: 36px 18px 24px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                padding: 28px 18px 60px;
+            }
+
+            .problem {
+                grid-template-columns: 44px 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .p-link {
+                grid-column: 1/-1;
+                justify-self: start;
+                margin-top: 4px;
+            }
+
+            .filters {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h2>53. Max Subarray Sum</h2>
-    <a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">Link</a>
-    <h2>75. Sort Colors</h2>
-    <a href="https://leetcode.com/problems/sort-colors/" target="_blank">Link</a>
-    <h2>189. Rotate Array</h2>
-    <a href="https://leetcode.com/problems/rotate-array/" target="_blank">Link</a>
-    <h2>278. First Bad Version</h2>
-    <a href="https://leetcode.com/problems/first-bad-version/" target="_blank">Link</a>
+
+    <header>
+        <div class="header-inner">
+            <div class="eyebrow">koushik369mondal / leetcode-log</div>
+            <h1>LeetCode Java Solutions</h1>
+            <p class="sub">A running log of problems solved in Java — single-class, static-method style. Search by name
+                or filter by difficulty.</p>
+
+            <div class="stats">
+                <span class="stat-count"><strong id="visibleCount">0</strong> / <span id="totalCount">0</span>
+                    problems</span>
+                <div class="bar">
+                    <span class="b-easy" id="barEasy"></span>
+                    <span class="b-medium" id="barMedium"></span>
+                    <span class="b-hard" id="barHard"></span>
+                </div>
+                <div class="legend">
+                    <span><i class="le"></i>Easy</span>
+                    <span><i class="lm"></i>Medium</span>
+                    <span><i class="lh"></i>Hard</span>
+                </div>
+            </div>
+
+            <div class="prompt">
+                <span class="prompt-sign">$</span>
+                <input id="searchInput" type="text" placeholder="search problems, e.g. 'two sum' or 'array'"
+                    autocomplete="off">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">all</button>
+                <button class="filter-btn" data-filter="Easy">easy</button>
+                <button class="filter-btn" data-filter="Medium">medium</button>
+                <button class="filter-btn" data-filter="Hard">hard</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="lists"></div>
+        <p class="empty-state" id="emptyState">no matches — try a different search or filter</p>
+    </main>
+
+    <footer>
+        built &amp; maintained by <a href="https://leetcode.com/u/koushik369mondal/"
+            target="_blank">koushik369mondal</a>
+    </footer>
+
+    <script>
+        const problems = [
+            { id: 1, title: "Two Sum", topic: "Array, Hash Table", diff: "Easy", url: "https://leetcode.com/problems/two-sum/" },
+            { id: 26, title: "Remove Duplicates from Sorted Array", topic: "Array, Two Pointers", diff: "Easy", url: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/" },
+            { id: 27, title: "Remove Element", topic: "Array, Two Pointers", diff: "Easy", url: "https://leetcode.com/problems/remove-element/" },
+            { id: 35, title: "Search Insert Position", topic: "Binary Search", diff: "Easy", url: "https://leetcode.com/problems/search-insert-position/" },
+            { id: 66, title: "Plus One", topic: "Array, Math", diff: "Easy", url: "https://leetcode.com/problems/plus-one/" },
+            { id: 88, title: "Merge Sorted Array", topic: "Array, Two Pointers", diff: "Easy", url: "https://leetcode.com/problems/merge-sorted-array/" },
+            { id: 121, title: "Best Time to Buy and Sell Stock", topic: "Array, Dynamic Programming", diff: "Easy", url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" },
+            { id: 136, title: "Single Number", topic: "Bit Manipulation", diff: "Easy", url: "https://leetcode.com/problems/single-number/" },
+            { id: 137, title: "Single Number II", topic: "Bit Manipulation", diff: "Easy", url: "https://leetcode.com/problems/single-number-ii/" },
+            { id: 169, title: "Majority Element", topic: "Array", diff: "Easy", url: "https://leetcode.com/problems/majority-element/" },
+            { id: 217, title: "Contains Duplicate", topic: "Hash Table", diff: "Easy", url: "https://leetcode.com/problems/contains-duplicate/" },
+            { id: 219, title: "Contains Duplicate II", topic: "Sliding Window", diff: "Easy", url: "https://leetcode.com/problems/contains-duplicate-ii/" },
+            { id: 231, title: "Power of Two", topic: "Math", diff: "Easy", url: "https://leetcode.com/problems/power-of-two/" },
+            { id: 268, title: "Missing Number", topic: "Array", diff: "Easy", url: "https://leetcode.com/problems/missing-number/" },
+            { id: 278, title: "First Bad Version", topic: "Binary Search", diff: "Easy", url: "https://leetcode.com/problems/first-bad-version/" },
+            { id: 455, title: "Assign Cookies", topic: "Greedy", diff: "Easy", url: "https://leetcode.com/problems/assign-cookies/" },
+            { id: 628, title: "Maximum Product of Three Numbers", topic: "Sorting", diff: "Easy", url: "https://leetcode.com/problems/maximum-product-of-three-numbers/" },
+            { id: 724, title: "Find Pivot Index", topic: "Prefix Sum", diff: "Easy", url: "https://leetcode.com/problems/find-pivot-index/" },
+            { id: 896, title: "Monotonic Array", topic: "Array", diff: "Easy", url: "https://leetcode.com/problems/monotonic-array/" },
+            { id: 977, title: "Squares of a Sorted Array", topic: "Two Pointers", diff: "Easy", url: "https://leetcode.com/problems/squares-of-a-sorted-array/" },
+            { id: 1009, title: "Complement of Base 10 Integer", topic: "Bit Manipulation", diff: "Easy", url: "https://leetcode.com/problems/complement-of-base-10-integer/" },
+            { id: 1572, title: "Matrix Diagonal Sum", topic: "Matrix", diff: "Easy", url: "https://leetcode.com/problems/matrix-diagonal-sum/" },
+
+            { id: 33, title: "Search in Rotated Sorted Array", topic: "Binary Search", diff: "Medium", url: "https://leetcode.com/problems/search-in-rotated-sorted-array/" },
+            { id: 53, title: "Maximum Subarray", topic: "Array, Dynamic Programming", diff: "Medium", url: "https://leetcode.com/problems/maximum-subarray/" },
+            { id: 75, title: "Sort Colors", topic: "Two Pointers, Sorting", diff: "Medium", url: "https://leetcode.com/problems/sort-colors/" },
+            { id: 80, title: "Remove Duplicates from Sorted Array II", topic: "Array, Two Pointers", diff: "Medium", url: "https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/" },
+            { id: 134, title: "Gas Station", topic: "Greedy", diff: "Medium", url: "https://leetcode.com/problems/gas-station/" },
+            { id: 162, title: "Find Peak Element", topic: "Binary Search", diff: "Medium", url: "https://leetcode.com/problems/find-peak-element/" },
+            { id: 189, title: "Rotate Array", topic: "Array", diff: "Medium", url: "https://leetcode.com/problems/rotate-array/" },
+            { id: 238, title: "Product of Array Except Self", topic: "Array, Prefix Sum", diff: "Medium", url: "https://leetcode.com/problems/product-of-array-except-self/" },
+            { id: 274, title: "H-Index", topic: "Array, Sorting", diff: "Medium", url: "https://leetcode.com/problems/h-index/" },
+            { id: 852, title: "Peak Index in a Mountain Array", topic: "Binary Search", diff: "Medium", url: "https://leetcode.com/problems/peak-index-in-a-mountain-array/" },
+            { id: 877, title: "Stone Game", topic: "Dynamic Programming", diff: "Medium", url: "https://leetcode.com/problems/stone-game/" },
+
+            { id: 4, title: "Median of Two Sorted Arrays", topic: "Binary Search, Divide and Conquer", diff: "Hard", url: "https://leetcode.com/problems/median-of-two-sorted-arrays/" },
+            { id: 42, title: "Trapping Rain Water", topic: "Two Pointers, Stack", diff: "Hard", url: "https://leetcode.com/problems/trapping-rain-water/" },
+        ];
+
+        const listsEl = document.getElementById('lists');
+        const emptyEl = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        let activeFilter = 'all';
+        let query = '';
+
+        const order = ['Easy', 'Medium', 'Hard'];
+        const dotClass = { Easy: 'dot-easy', Medium: 'dot-medium', Hard: 'dot-hard' };
+
+        function pad(n) { return '#' + String(n).padStart(4, '0'); }
+
+        function render() {
+            const q = query.trim().toLowerCase();
+            const filtered = problems.filter(p => {
+                const matchesFilter = activeFilter === 'all' || p.diff === activeFilter;
+                const matchesQuery = !q || p.title.toLowerCase().includes(q) || p.topic.toLowerCase().includes(q);
+                return matchesFilter && matchesQuery;
+            });
+
+            listsEl.innerHTML = '';
+
+            order.forEach(diff => {
+                const group = filtered.filter(p => p.diff === diff);
+                if (group.length === 0) return;
+
+                const heading = document.createElement('div');
+                heading.className = 'group-heading';
+                heading.innerHTML = `<span class="dot ${dotClass[diff]}"></span><h2>${diff}</h2><span class="count">${group.length}</span>`;
+                listsEl.appendChild(heading);
+
+                const ul = document.createElement('ul');
+                ul.className = 'problem-list';
+                group.forEach(p => {
+                    const li = document.createElement('li');
+                    li.className = 'problem';
+                    li.innerHTML = `
+        <span class="p-id">${pad(p.id)}</span>
+        <div class="p-main">
+          <h3>${p.title}</h3>
+          <span class="p-topic">${p.topic}</span>
+        </div>
+        <a class="p-link" href="${p.url}" target="_blank" rel="noopener">Open →</a>
+      `;
+                    ul.appendChild(li);
+                });
+                listsEl.appendChild(ul);
+            });
+
+            emptyEl.style.display = filtered.length === 0 ? 'block' : 'none';
+
+            document.getElementById('visibleCount').textContent = filtered.length;
+            document.getElementById('totalCount').textContent = problems.length;
+
+            const easyPct = problems.length ? (problems.filter(p => p.diff === 'Easy').length / problems.length * 100) : 0;
+            const medPct = problems.length ? (problems.filter(p => p.diff === 'Medium').length / problems.length * 100) : 0;
+            const hardPct = problems.length ? (problems.filter(p => p.diff === 'Hard').length / problems.length * 100) : 0;
+            document.getElementById('barEasy').style.width = easyPct + '%';
+            document.getElementById('barMedium').style.width = medPct + '%';
+            document.getElementById('barHard').style.width = hardPct + '%';
+        }
+
+        searchInput.addEventListener('input', e => {
+            query = e.target.value;
+            render();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                render();
+            });
+        });
+
+        render();
+    </script>
+
 </body>
+
 </html>
