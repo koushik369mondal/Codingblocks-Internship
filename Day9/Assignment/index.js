@@ -5,7 +5,7 @@ const fs = require('fs');
 // console.log('File Create');
 
 // READ
-const data = fs.readFileSync('temp.txt', 'utf8');
+const data = fs.readFileSync('temp.txt');
 console.log('File content: ', data);
 
 // UPDATE
