@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class PrimeCheck {
 
-    // Reusable function to check if a number is prime
     public static boolean isPrime(int num) {
         if (num <= 1) {
             return false;
