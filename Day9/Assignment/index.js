@@ -9,11 +9,11 @@ const fs = require('fs');
 // console.log('File content: ', data);
 
 // UPDATE
-fs.appendFileSync('temp.txt', '\nNew Data Added.');
-console.log('File Updated.');
+// fs.appendFileSync('temp.txt', '\nNew Data Added.');
+// console.log('File Updated.');
 
 // DELETE
-// fs.unlinkSync('temp.txt');
-// console.log('File Deleted');
+fs.unlinkSync('temp.txt');
+console.log('File Deleted');
 
 
