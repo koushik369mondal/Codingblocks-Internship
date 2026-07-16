@@ -101,6 +101,32 @@ app.delete('/api/users/:id', (req, res) => {
 });
 
 
+// patch - update the selected data
+app.patch("/api/users/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    let obj = users.find((item) => item.id === id);
+
+    console.log(obj);
+
+    if (!obj) {
+        return res.status(404).json({ status: "User not found" });
+    }
+
+    obj.first_name = req.body.first_name;
+
+    console.log(obj);
+
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+        if (err) {
+            return res.status(500).json({ status: "Failed" });
+        }
+
+        return res.json({ status: "successful" });
+    });
+});
+
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
