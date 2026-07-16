@@ -11,13 +11,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 // HOME
+// http://localhost:8001/
 app.get('/', (req, res)=>{
     res.send(`Server running on port ${PORT}`)
 })
 
 // GET All Users
+// http://localhost:8001/api/users/
 app.get('/api/users', (req, res) => {
     return res.json(users);
+})
+
+// GET User By Id
+// http://localhost:8001/api/user/1
+app.get('/api/user/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const user = users.find((item) => item.id === id);
+    if(!user){
+        return res.status(404).json({
+            status: "User Not Found",
+        });
+    }
+    return res.json(user);
 })
 
 

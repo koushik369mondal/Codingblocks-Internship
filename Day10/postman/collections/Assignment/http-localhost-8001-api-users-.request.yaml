@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:8001/api/users/
+description: ""
+url: http://localhost:8001/api/users/
+method: GET
+order: 3722712170906626
