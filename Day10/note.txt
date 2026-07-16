@@ -1,0 +1,11 @@
+
+CRUD using express on REST API
+
+selected user -> get 
+
+new data add -> post ->  create
+
+modify the data -> patch -> update
+
+delete -> delete 
+
