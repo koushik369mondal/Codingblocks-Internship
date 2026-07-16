@@ -10,9 +10,11 @@ app.get('/', (req, res) => {
 
 // query
 app.get('/name', (req, res) => {
-    // res.send('Hello Kaushik')
-    console.log(req.query);
-})
+    const name = req.query.q;
+    console.log(name);
+    res.send(`Hello ${name}`);
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`); // Note: The instructor is currently typing the console.log statement here
