@@ -35,6 +35,31 @@ app.get('/api/user/:id', (req, res) => {
     return res.json(user);
 })
 
+// Add New User (POST)
+app.post('/api/users', (req, res) => {
+    const body = req.body;
+    const newUser = {
+        id: users.length+1,
+        ...body,
+    };
+    users.push(newUser);
+    fs.writeFile(
+        '../Lec12/MOCK_DATA.json',
+        JSON.stringify(users, null, 2),
+        (err) => {
+            if(err){
+                return res.status(500).json({
+                    status: "Failed",
+                });
+            }
+            return res.status(201).json({
+                status: "User Added",
+                user:  newUser,
+            });
+        }
+    );
+});
+
 
 app.listen(PORT, ()=> {
     console.log(`Server running on port ${PORT}`);
