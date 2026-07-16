@@ -36,13 +36,6 @@
     "ip_address": "10.0.0.1"
   },
   {
-    "id": 6,
-    "first_name": "Richard",
-    "last_name": "Newbury",
-    "email": "rnewbury5@spiegel.de",
-    "gender": "Male"
-  },
-  {
     "id": 7,
     "first_name": "Myrtle",
     "last_name": "Phil",

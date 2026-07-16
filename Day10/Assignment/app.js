@@ -143,6 +143,33 @@ app.put('/api/users/:id', (req, res) => {
     )
 })
 
+//  Delete User
+//  http://localhost:8001/api/users/6
+app.delete('/api/users/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const user = users.find((item) => item.id === id);
+    if(!user){
+        return res.status(404).json({
+            status: "User Not Found",
+        });
+    }
+    users = users.filter((item) => item.id !== id);
+    fs.writeFile(
+        '../Lec12/MOCK_DATA.json',
+        JSON.stringify(users, null, 2),
+        (err) => {
+            if(err){
+                return res.status(500).json({
+                    status: "Failed",
+                });
+            }
+            return res.json({
+                status: "User Deleted Successfully",
+            });
+        }
+    )
+});
+
 
 
 app.listen(PORT, ()=> {
