@@ -16,6 +16,7 @@ app.get('/api/users', (req, res) => {
 })
 
 // get particular data
+// http://localhost:8001/api/users/12
 app.get('/api/users/:id', (req,res) => {
     const id = req.params.id;
 
@@ -27,6 +28,18 @@ app.get('/api/users/:id', (req,res) => {
 
     return res.json(user)
 })
+
+// http://localhost:8001/api/users/multiple/12,14,15
+app.get('/api/users/multiple/:ids', (req, res) => {
+
+    const idArray = req.params.ids.split(',').map(Number);
+
+    const matchedUsers = users.filter(item => idArray.includes(Number(item.id)));
+
+    console.log(matchedUsers);
+    return res.json(matchedUsers);
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`); // Note: The instructor is currently typing the console.log statement here
