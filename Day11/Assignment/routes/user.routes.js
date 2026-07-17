@@ -40,5 +40,21 @@ router.post('/', (req, res) => {
     });
 });
 
+// PATCH - updated selected data
+router.patch('/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const body = req.body;
+
+    // Find the user and merge the updates directly into the object
+    const user = users.find(u => u.id === id);
+    Object.assign(user, body);
+
+    fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
+        if (err) return res.status(500).json({ status: "Error" });
+        return res.json({ status: "Successfull" });
+    });
+});
+
+
 
 module.exports = router;

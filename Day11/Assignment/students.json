@@ -255,7 +255,13 @@
     "id": 29
   },
   {
-    "id": 30
+    "id": 30,
+    "name": "Temp2",
+    "email": "temp2@gmail.com",
+    "phoneNumber": "7003035426",
+    "dob": "24/10/2003",
+    "leetcodeProfile": "https://leetcode.com/u/AayusKumarPrasad24/",
+    "githubLink": "https://github.com/Aayushkrprasad"
   },
   {
     "id": 31,
