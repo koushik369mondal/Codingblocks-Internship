@@ -1,0 +1,11 @@
+
+
+HW.
+make a student.json file adda dummy data 
+then perform CRUD operations using express route
+
+POST
+PATCH
+DELTE
+get all student data
+get particular students data 
