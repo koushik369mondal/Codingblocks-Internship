@@ -14,10 +14,8 @@ router.get('/', (req, res) => {
 
 // GET Particular
 router.get('/:id', (req, res) =>{
-    const id = req.params.id;
-    console.log(typeof(id));
+    const id = Number(req.params.id);
     const user = users.filter((item) => item.id === id);
-    console.log(user);
     return res.json(user);
 })
 
@@ -45,7 +43,6 @@ router.patch('/:id', (req, res) => {
     const id = Number(req.params.id);
     const body = req.body;
 
-    // Find the user and merge the updates directly into the object
     const user = users.find(u => u.id === id);
     Object.assign(user, body);
 
@@ -54,6 +51,20 @@ router.patch('/:id', (req, res) => {
         return res.json({ status: "Successfull" });
     });
 });
+
+// DELETE
+router.delete('/:id', (req, res) => {
+    const id = Number(req.params.id);
+
+    const index = users.findIndex(item => item.id === id);
+
+    if (index !== -1) users.splice(index, 1);
+
+    fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
+        return res.json({ status: "succesfull" });
+    });
+});
+
 
 
 
