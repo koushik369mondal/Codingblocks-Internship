@@ -8,10 +8,10 @@ const userSchema = new mongoose.Schema({
     age: {
         type: Number,
     },
-    mobile_no: {
+    mobile: {
         type: Number,
     },
-    rollNo:{
+    rollno:{
         type: Number,
         required: true,
         unique: true
